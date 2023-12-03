@@ -1,19 +1,70 @@
-/* This is an example CSS file, feel free to remove/edit it anytime */
-.footer {
+@font-face {
+  font-family: Nunito-Bold;
+  src: url("assets/fonts/Nunito-Bold.ttf");
+}
+
+@font-face {
+  font-family: Nunito-SemiBold;
+  src: url("assets/fonts/Nunito-SemiBold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #FFF;
+}
+
+body {
+  background-color: #350297;
+}
+
+#quiz-container {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  width: max-content;
+}
+
+#logo-container {
+  width: max-content;
+  margin: auto;
+}
+
+h1, p {
   text-align: center;
+  margin-top: 8vh;
 }
 
-.footer a {
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
+h1 {
+  font-family: Nunito-Bold, sans-serif;
+  font-weight: 600;
 }
 
-.footer span {
-  font-size: 14px;
+p {
+  font-family: Nunito-SemiBold;
+  font-weight: 400;
+  color: #ababab;
+  margin-top: 2vh;
 }
+
+#start-quiz {
+  font-size: 16px;
+  color: #000;
+  line-height: 1.5;
+  padding: 8px 60px;
+  display: block;
+  margin: 5vh auto;
+  background-color: rgb(194, 168, 25);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+}
+
+#start-quiz:hover {
+  cursor: pointer;
+  transform: translate(-2%, -3%);
+}
+
