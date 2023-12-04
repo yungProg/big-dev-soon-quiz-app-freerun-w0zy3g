@@ -8,18 +8,21 @@
   src: url("assets/fonts/Nunito-SemiBold.ttf");
 }
 
+html {
+  /*font-size: 100%;*/
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: #FFF;
-  font-family: Nunito-SemiBold sans-serif;
-  font-size: clamp(1.5rem, 1vw, 2rem);
+  font-family: sans-serif;
+  font-size: 40px;
 }
 
 body {
   background-color: #350297;
-  
 }
 
 #quiz-container {
@@ -45,7 +48,7 @@ h1, p {
 h1 {
   font-family: Nunito-Bold, sans-serif;
   font-weight: 600;
-  font-size: clamp(2.2rem, 1vw, 2.5rem);
+  /*font-size: 3rem;*/
 }
 
 p {
@@ -55,7 +58,7 @@ p {
 }
 
 #start-quiz {
-  font-size: clamp(1rem, 1vw, 2rem);
+  /*font-size: 2rem;*/
   color: #000;
   line-height: 1.5;
   padding: 8px 60px;
