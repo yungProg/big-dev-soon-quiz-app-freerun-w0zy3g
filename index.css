@@ -83,8 +83,8 @@ p {
 #question-number {
   color: inherit;
   border: none;
-
   margin: 0 auto;
+  color: #FF0244;
 }
 
 #current-score {
