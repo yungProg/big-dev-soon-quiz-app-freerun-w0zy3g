@@ -14,10 +14,12 @@
   box-sizing: border-box;
   color: #FFF;
   font-family: Nunito-SemiBold sans-serif;
+  font-size: clamp(1.2rem, 1vw, 2rem);
 }
 
 body {
   background-color: #350297;
+  
 }
 
 #quiz-container {
@@ -43,6 +45,7 @@ h1, p {
 h1 {
   font-family: Nunito-Bold, sans-serif;
   font-weight: 600;
+  font-size: clamp(2.2rem, 1vw, 2.5rem);
 }
 
 p {
@@ -52,7 +55,7 @@ p {
 }
 
 #start-quiz {
-  font-size: 16px;
+  font-size: clamp(1rem, 1vw, 2rem);
   color: #000;
   line-height: 1.5;
   padding: 8px 60px;
@@ -80,15 +83,13 @@ p {
 #question-number {
   color: inherit;
   border: none;
-  display: inline-block;
+
   margin: 0 auto;
 }
 
 #current-score {
-  display: inline-block;
   color: #ffffff;
-  margin-right: auto;
-  margin-left: 60%;
+  text-align: left;
 }
 
 .question {
@@ -103,7 +104,7 @@ button:hover {
 .option {
   display: block;
   margin-bottom: 20px;
-  font-size: 24px;
+  
   width: 100%;
   text-align: left;
   padding: 12px;
@@ -123,7 +124,7 @@ button:hover {
 } 
 
 #next, .replay{
-  font-size: 24px;
+  
   padding: 8px 56px;
   background-color: gold;
   color: #000;
