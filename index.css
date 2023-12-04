@@ -13,6 +13,7 @@
   padding: 0;
   box-sizing: border-box;
   color: #FFF;
+  font-family: Nunito-SemiBold sans-serif;
 }
 
 body {
@@ -21,11 +22,12 @@ body {
 
 #quiz-container {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   padding: 16px;
-  width: max-content;
+  width: 90%;
+  max-width: 800px;
 }
 
 #logo-container {
@@ -44,7 +46,6 @@ h1 {
 }
 
 p {
-  font-family: Nunito-SemiBold;
   font-weight: 400;
   color: #ababab;
   margin-top: 2vh;
@@ -68,3 +69,74 @@ p {
   transform: translate(-2%, -3%);
 }
 
+#quiz-heading, #question-number {
+  color: red;
+  text-align: left;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #FFF;
+  margin-bottom: 20px;
+}
+
+#question-number {
+  color: inherit;
+  border: none;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#current-score {
+  display: inline-block;
+  color: #ffffff;
+  margin-right: auto;
+  margin-left: 60%;
+}
+
+.question {
+  margin-top: 32px;
+  margin-bottom: 40px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.option {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 24px;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #200159;
+  border: 2px solid black;
+}
+
+.option:not(:disabled):hover {
+  cursor: pointer;
+  background-color: #c0c0c0;
+  color: #200159;
+}
+
+.option:disabled:hover {
+  cursor: no-drop;
+} 
+
+#next, .replay{
+  font-size: 24px;
+  padding: 8px 56px;
+  background-color: gold;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 32px auto 0;
+}
+
+.correct {
+  background-color: #01FF11;
+}
+
+.incorrect {
+  background-color: #FF0244;
+}
