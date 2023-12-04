@@ -14,7 +14,7 @@
   box-sizing: border-box;
   color: #FFF;
   font-family: Nunito-SemiBold sans-serif;
-  font-size: clamp(1.2rem, 1vw, 2rem);
+  font-size: clamp(1.5rem, 1vw, 2rem);
 }
 
 body {
