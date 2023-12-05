@@ -5,7 +5,7 @@ console.log(
 );
 console.log("Check out more projects at https://bigdevsoon.me");*/
 
-const quizArr = [
+/*const quizArr = [
   {
     type: 'multiple',
     difficulty: 'medium',
@@ -86,7 +86,20 @@ const quizArr = [
     correct_answer: 'Dream Drop Distance',
     incorrect_answers: ['Sports', "gdjd", "jsj", "Dream Drop Distance"]
   }
-];
+];*/
+
+let quizArr = [];
+
+async function makeServerRequest() {
+  const request = await fetch("https://opentdb.com/api.php?amount=10");
+  const response = await request.json();
+  quizArr = [];
+  response.results.forEach(item => {
+    item.incorrect_answers.push(item.correct_answer)
+    quizArr.push(item)
+  });
+}
+makeServerRequest()
 
 let currentQuestion = 0;
 let score = 0;
@@ -98,6 +111,7 @@ function startQuiz() {
   questionNumber()
   renderQuestion()
   renderAnswers()
+  console.log(quizArr)
 }
 
 //rendering quiz title
@@ -131,11 +145,23 @@ function renderQuestion() {
 
 //rendering answers
 function renderAnswers() {
-  quizArr[currentQuestion].incorrect_answers.forEach(
+  quizArr.forEach(item => {
+    item.choices = [];
+    while (item.choices.length < item.incorrect_answers.length) {
+      let randomNum = Math.floor(Math.random() * item.incorrect_answers.length);
+      if (!item.choices.includes(item.incorrect_answers[randomNum])) {
+        item.choices.push(item.incorrect_answers[randomNum])
+      }
+    }
+  });
+  quizArr[currentQuestion].choices.forEach(
     option => {
       const answer = document.createElement("button");
       answer.classList.add("option");
       answer.innerHTML = option;
+      if (answer.innerHTML == quizArr[currentQuestion].correct_answer) {
+        answer.classList.add("right-answer")
+      }
       answer.addEventListener("click", checkAnswer)
       quizContainer.appendChild(answer);
     }
@@ -164,7 +190,10 @@ function nextQuestion() {
       restart.classList.add("replay");
       restart.innerHTML = "Play Again";
       quizContainer.appendChild(restart);
-      restart.addEventListener("click", () => replay())
+      restart.addEventListener("click", () => {
+        makeServerRequest()
+        replay()
+      })
     }
   })
 }
@@ -177,9 +206,13 @@ function checkAnswer(event) {
   } else {
     e.classList.add("incorrect");
   }
-  currentQuestion++;
+  try {
+    document.querySelector(".right-answer").style.backgroundColor = "#01FF11"; 
+  }finally {
+    currentQuestion++;
   nextQuestion();
   disableOptions()
+  }
 }
 
 function disableOptions() {
