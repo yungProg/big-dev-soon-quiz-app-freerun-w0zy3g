@@ -4,114 +4,36 @@ console.log(
   'font-size: 40px; font-weight: bold; color: #8A2BE2; font-family: "Comic Sans MS", cursive, sans-serif;'
 );
 console.log("Check out more projects at https://bigdevsoon.me");*/
-
-/*const quizArr = [
-  {
-    type: 'multiple',
-    difficulty: 'medium',
-    category: 'Science &amp; Nature',
-    question: 'Which desert is the only desert in the world where the &quot;Saguaro&quot; cactus grows indigenously?',
-    correct_answer: 'The Sonoran Desert',
-    incorrect_answers: ['The Sonoran Desert', "gdjd", "jsj", "sksj"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'easy',
-    category: 'Entertainment: Video Games',
-    question: 'Who is the creator of Touhou project?',
-    correct_answer: 'Zun',
-    incorrect_answers: ['The Sonoran Desert', "gdjd", "Zun", "sksj"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'medium',
-    category: 'Entertainment: Film',
-    question: 'Which star actor was in &quot;Top Gun&quot;, &quot;Jerry Maguire&quot; and &quot;Born on the Fourth of July&quot;?',
-    correct_answer: 'Tom Cruise',
-    incorrect_answers: ['The Sonoran Desert', "Zun", "jsj", "Tom Cruise"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'hard',
-    category: 'General Knowledge',
-    question: 'According to the 2014-2015 Australian Bureau of Statistics, what percentage of Australians were born overseas?',
-    correct_answer: '28%',
-    incorrect_answers: ['The Sonoran Desert', "gdjd", "28%", "Tom Cruise"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'medium',
-    category: 'Entertainment: Books',
-    question: 'In Romance of the Three Kingdoms, who was not a member of the Peach Garden Oath?',
-    correct_answer: 'Zhao Yun',
-    incorrect_answers: ['The Sonoran Desert', "Tom Cruise", "jsj", "28%"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'easy',
-    category: 'General Knowledge',
-    question: 'What is on display in the Madame Tussaud&#039;s museum in London?',
-    correct_answer: 'Wax sculptures',
-    incorrect_answers: ['28%', "gdjd", "Wax sculptures", "Tom Cruise"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'easy',
-    category: 'Entertainment: Video Games',
-    question: 'In &quot;Yo! Noid 2,&quot; The Noid can perform what special move?',
-    correct_answer: 'Dab',
-    incorrect_answers: ['easy', "Dab", "jsj", "Video"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'easy',
-    category: 'Sports',
-    question: 'The Rio 2016 Summer Olympics held it&#039;s closing ceremony on what date?',
-    correct_answer: 'August 21',
-    incorrect_answers: ['Tom Cruise', "Ultimate", "August 21", "Sports"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'easy',
-    category: 'Entertainment: Japanese Anime &amp; Manga',
-    question: 'In Digimon, what is the Japanese name for the final evolutionary stage?',
-    correct_answer: 'Ultimate',
-    incorrect_answers: ['Ultimate', "Sports", "jsj", "sksj"]
-  },
-  {
-    type: 'multiple',
-    difficulty: 'hard',
-    category: 'Entertainment: Video Games',
-    question: 'Which Kingdom Hearts game featured the cast of &quot;The World Ends With You&quot;?',
-    correct_answer: 'Dream Drop Distance',
-    incorrect_answers: ['Sports', "gdjd", "jsj", "Dream Drop Distance"]
-  }
-];*/
+ 
 
 let quizArr = [];
+const quizContainer = document.getElementById("quiz-container");
 
 async function makeServerRequest() {
-  const request = await fetch("https://opentdb.com/api.php?amount=10");
+  try {
+    const request = await fetch("https://opentdb.com/api.php?amount=10");
   const response = await request.json();
   quizArr = [];
   response.results.forEach(item => {
     item.incorrect_answers.push(item.correct_answer)
     quizArr.push(item)
   });
+  } catch (error) {
+    console.log(error, "Please refresh the page")
+  }
 }
 makeServerRequest()
 
 let currentQuestion = 0;
 let score = 0;
 
-const quizContainer = document.getElementById("quiz-container");
+
 function startQuiz() {
   resetState()
   quizTitle()
   questionNumber()
   renderQuestion()
   renderAnswers()
-  console.log(quizArr)
 }
 
 //rendering quiz title
