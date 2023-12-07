@@ -19,6 +19,7 @@ html {
   color: #FFF;
   font-family: sans-serif;
   font-size: 2rem;
+  line-height: 1.5;
 }
 
 body {
@@ -73,7 +74,7 @@ p {
   border-radius: 20px;
 }
 
-#start-quiz:hover {
+#start-quiz:hover, #next:hover, .replay:hover  {
   cursor: pointer;
   transform: translate(-2%, -3%);
 }
@@ -110,13 +111,16 @@ button:hover {
 .option {
   display: block;
   margin-bottom: 20px;
-  
   width: 100%;
   text-align: left;
   padding: 12px;
   border-radius: 8px;
   background-color: #200159;
   border: 2px solid black;
+}
+
+.option:last-child {
+  margin-bottom: 10vh;
 }
 
 .option:not(:disabled):hover {
@@ -137,7 +141,7 @@ button:hover {
   border: none;
   border-radius: 8px;
   display: block;
-  margin: 32px auto 0;
+  margin: 10vh auto 24vh;
 }
 
 .correct {
@@ -146,4 +150,73 @@ button:hover {
 
 .incorrect {
   background-color: #FF0244;
+}
+
+#progress-bar {
+  width: 200px;
+  height: 200px;
+  color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#score-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+h4 {
+  margin-left: 12px;
+}
+
+.card {
+  padding: 12px;
+
+}
+
+.ques {
+  display: flex;
+  gap: 28px;
+}
+
+.cor {
+  margin-left: auto;
+}
+
+.ans {
+  display: flex;
+  gap: 16px;
+  margin-left: 52px;
+}
+
+#review-ans-heading {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  color: #ababab;
+}
+
+.card {
+  margin: 32px auto;
+  background-color: #240955;
+  padding: 16px;
+}
+
+.q-num {
+  background-color: #ababab;
+  width: max-content;
+  height: max-content;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.your-ans, .cor-ans {
+  margin-top: 30px;
+  text-align: left;
+}
+
+#review-container  * {
+  font-size: 20px;
 }

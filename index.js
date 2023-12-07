@@ -5,9 +5,11 @@ console.log(
 );
 console.log("Check out more projects at https://bigdevsoon.me");*/
  
-
+let selectedAnswers = [];
 let quizArr = [];
 const quizContainer = document.getElementById("quiz-container");
+const answered = document.createElement("div");
+answered.id = "review-container"
 
 async function makeServerRequest() {
   try {
@@ -114,6 +116,7 @@ function nextQuestion() {
       quizContainer.appendChild(restart);
       restart.addEventListener("click", () => {
         makeServerRequest()
+        selectedAnswers = []
         replay()
       })
     }
@@ -131,6 +134,12 @@ function checkAnswer(event) {
   try {
     document.querySelector(".right-answer").style.backgroundColor = "#01FF11"; 
   }finally {
+    selectedAnswers.push({
+      q_Num: currentQuestion,
+      ques: quizArr[currentQuestion].question,
+      selectedAns: e.innerHTML,
+      corAns: quizArr[currentQuestion].correct_answer
+    })
     currentQuestion++;
   nextQuestion();
   disableOptions()
@@ -145,9 +154,24 @@ function disableOptions() {
 }
 
 function finalScore() {
+  const containerScore = document.createElement("div");
+  containerScore.id = "score-container"
+  const bar = document.createElement("div");
+  bar.id = "progress-bar";
+  bar.innerHTML = `${score}/${quizArr.length}`
+  bar.style.background = `radial-gradient(closest-side, #200159 79%, transparent 80% 100%), conic-gradient(#B6BBC4 ${score * 10}%, #31304D 0)`
   const quizResult = document.createElement("h3");
-  quizResult.innerHTML = `You scored ${score} out of ${quizArr.length}!`
-  quizContainer.appendChild(quizResult)
+  quizResult.innerHTML = `You scored ${score} <br/> out of ${quizArr.length}!`
+  quizResult.style.display = "inline-block";
+  quizContainer.appendChild(containerScore);
+  containerScore.appendChild(bar)
+  containerScore.appendChild(quizResult);
+  const ansHeading = document.createElement("h4");
+  ansHeading.id = "review-ans-heading";
+  ansHeading.innerHTML = "Your Answers"
+  answered.appendChild(ansHeading)
+  renderSelectedAnswers()
+  quizContainer.appendChild(answered)
 }
 
 function resetState() {
@@ -168,3 +192,47 @@ function replay() {
   currentQuestion = 0;
   startQuiz();
 }
+
+function renderSelectedAnswers() {
+  selectedAnswers.forEach(item => {
+    const card = document.createElement("div");
+    card.classList.add("card")
+    const qContainer = document.createElement("div");
+    qContainer.classList.add("ques");
+    const qNum = document.createElement("span");
+    qNum.classList.add("q-num");
+    const answeredQuestion = document.createElement("h3");
+    const isCorrect = document.createElement("span");
+    isCorrect.classList.add("cor");
+    const result = document.createElement("div");
+    result.classList.add("ans");
+    const yourAns = document.createElement("p");
+    yourAns.classList.add("your-ans");
+    const trueAns = document.createElement("p");
+    trueAns.classList.add("cor-ans")
+    qNum.innerHTML = item.q_Num + 1;
+    answeredQuestion.innerHTML = item.ques;
+    if (item.selectedAns == item.corAns) {
+      isCorrect.innerHTML = '<i class="fa-solid fa-check" style="color: #01FF11;"></i>'
+    }else {isCorrect.innerHTML = '<i class="fa-regular fa-circle-xmark" style="color: #ff0244;"></i>'}
+    if (item.selectedAns == item.corAns) {
+      yourAns.innerHTML = item.selectedAns;
+      yourAns.style.color = "#01FF11"
+      trueAns.innerHTML = "";
+    } else {
+      yourAns.innerHTML = item.selectedAns;
+      yourAns.style.color = "#FF0244"
+      trueAns.innerHTML = item.corAns;
+      trueAns.style.color = "#01FF11"
+    }
+    qContainer.appendChild(qNum);
+    qContainer.appendChild(answeredQuestion);
+    qContainer.appendChild(isCorrect)
+    result.appendChild(yourAns);
+    result.appendChild(trueAns)
+    card.appendChild(qContainer);
+    card.appendChild(result)
+    answered.appendChild(card)
+  })
+}
+
