@@ -110,10 +110,18 @@ function nextQuestion() {
       resetState();
       quizTitle();
       finalScore();
+      const replayContainer = document.createElement("div");
+      replayContainer.id = "replay-container";
+      quizContainer.appendChild(replayContainer);
+      const homepage = document.createElement("button");
+      homepage.classList.add("homepage");
+      homepage.innerText = "Back to Home Page"
+      replayContainer.appendChild(homepage);
+      homepage.addEventListener("click", () => {window.location.href = "index.html"})
       const restart = document.createElement("button");
       restart.classList.add("replay");
-      restart.innerHTML = "Play Again";
-      quizContainer.appendChild(restart);
+      restart.innerHTML = "Start new Quiz";
+      replayContainer.appendChild(restart);
       restart.addEventListener("click", () => {
         makeServerRequest()
         selectedAnswers = []

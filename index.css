@@ -133,7 +133,7 @@ button:hover {
   cursor: no-drop;
 } 
 
-#next, .replay{
+#next, .replay, .homepage{
   
   padding: 8px 56px;
   background-color: gold;
@@ -142,6 +142,16 @@ button:hover {
   border-radius: 8px;
   display: block;
   margin: 10vh auto 24vh;
+}
+
+.homepage {
+  background-color: #01FF11;
+  color: #FFF;
+}
+
+.replay, .homepage {
+  margin: auto;
+  border-radius: 25px;
 }
 
 .correct {
@@ -219,4 +229,15 @@ h4 {
 
 #review-container  * {
   font-size: 2rem;
+}
+
+#replay-container {
+  background-color: #e3e3e3;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  padding: 30px 20px;
 }
