@@ -5,7 +5,7 @@ console.log(
 );
 console.log("Check out more projects at https://bigdevsoon.me");*/
  
-let selectedAnswers = [];
+const selectedAnswers = [];
 let quizArr = [];
 const quizContainer = document.getElementById("quiz-container");
 const answered = document.createElement("div");
